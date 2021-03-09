@@ -23,14 +23,14 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish Windows
-      uses: studiowhynot/dotnet-release@v0.1
+      uses: studiowhynot/dotnet-release@v0.2
       with:
         os: win-x64
     - name: Publish OSX
-      uses: studiowhynot/dotnet-release@v0.1
+      uses: studiowhynot/dotnet-release@v0.2
       with:
         os: osx-x64
     - name: Publish Linux
-      uses: studiowhynot/dotnet-release@v0.1
+      uses: studiowhynot/dotnet-release@v0.2
       with:
         os: linux-x64
