@@ -1,0 +1,32 @@
+{
+    "discord":
+    {
+        "bot_token": "<ex: Discord Bot token>",
+        "command_prefix": "!",
+        "arg_seperator_char": " ",
+        "case_sensitive_commands": false,
+        "log_not_found": false,
+        "user_map":
+        {
+            "bob": "Bob Barker",
+            "twi": "Twilight Sparkle",
+            "steve": "Minecraft Steve"
+        },
+        "status_map":
+        {
+            "todo": "To Do",
+            "inprogress": "In Progress",
+            "inreview": "In Review",
+            "review": "In Review",
+            "bug": "Open Bug"
+        }
+    },
+    "atlassian":
+    {
+        "jira_url": "https://myjirainstance.atlassian.net/",
+        "consumer_key": "<ex: Jira_Bot>",
+        "consumer_secret": "<ex: Massive string>",
+        "oauth_token": "<ex: Token string>",
+        "oauth_secret": "<ex: Secret string>"
+    }
+}
