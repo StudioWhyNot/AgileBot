@@ -23,14 +23,40 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish Windows
-      uses: studiowhynot/dotnet-release@v0.21
+      run: |
+          dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true
+          cp settings.json.example bin/Release/netcoreapp3.1/win-x64/settings.json.example
+          cd bin/Release/netcoreapp3.1/win-x64
+    - name: Upload Windows
+      uses: actions/upload-artifact@v2
       with:
-        os: win-x64
+        name: build-with-settings
+        path: | 
+          AgileBot.exe
+          settings.json.example
     - name: Publish OSX
-      uses: studiowhynot/dotnet-release@v0.21
+      run: |
+          cd ../../../..
+          dotnet publish -c Release -r osx-x64 -p:PublishSingleFile=true
+          cp settings.json.example bin/Release/netcoreapp3.1/osx-x64/settings.json.example
+          cd bin/Release/netcoreapp3.1/osx-x64
+    - name: Upload OSX
+      uses: actions/upload-artifact@v2
       with:
-        os: osx-x64
+        name: build-with-settings
+        path: | 
+          AgileBot.exe
+          settings.json.example
     - name: Publish Linux
-      uses: studiowhynot/dotnet-release@v0.21
+      run: |
+          cd ../../../..
+          dotnet publish -c Release -r linux-x64 -p:PublishSingleFile=true
+          cp settings.json.example bin/Release/netcoreapp3.1/linux-x64/settings.json.example
+          cd bin/Release/netcoreapp3.1/linux-x64
+    - name: Upload Linux
+      uses: actions/upload-artifact@v2
       with:
-        os: linux-x64
+        name: build-with-settings
+        path: | 
+          AgileBot.exe
+          settings.json.example
