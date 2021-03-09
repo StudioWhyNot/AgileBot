@@ -23,10 +23,30 @@ jobs:
       run: dotnet build -c Release --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Publish Windows
+      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true
+    - name: Archive Windows
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-with-settings
+        path: | 
+          bin/Release/netcoreapp3.1/win-x64/AgileBot.exe
+          settings.json.example
+    - name: Publish Linux
+      run: dotnet publish -c Release -r osx-x64 -p:PublishSingleFile=true
     - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-with-settings
-          path: |
-            bin/Release/netcoreapp3.1/
-            settings.json.example
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-with-settings
+        path: |
+          bin/Release/netcoreapp3.1/osx-x64/AgileBot
+          settings.json.example
+    - name: Publish Linux
+      run: dotnet publish -c Release -r linux-x64 -p:PublishSingleFile=true
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-with-settings
+        path: |
+          bin/Release/netcoreapp3.1/linux-x64/AgileBot
+          settings.json.example
