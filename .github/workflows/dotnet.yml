@@ -24,9 +24,9 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish Windows
       run: |
+          rm AgileBot.exe
           dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true
-          cp settings.json.example bin/Release/netcoreapp3.1/win-x64/settings.json.example
-          cd bin/Release/netcoreapp3.1/win-x64
+          mv bin/Release/netcoreapp3.1/win-x64/AgileBot.exe ./AgileBot.exe
     - name: Upload Windows
       uses: actions/upload-artifact@v2
       with:
@@ -36,10 +36,9 @@ jobs:
           settings.json.example
     - name: Publish OSX
       run: |
-          cd ../../../..
+          rm AgileBot.exe
           dotnet publish -c Release -r osx-x64 -p:PublishSingleFile=true
-          cp settings.json.example bin/Release/netcoreapp3.1/osx-x64/settings.json.example
-          cd bin/Release/netcoreapp3.1/osx-x64
+          mv bin/Release/netcoreapp3.1/osx-x64/AgileBot.exe ./AgileBot.exe
     - name: Upload OSX
       uses: actions/upload-artifact@v2
       with:
@@ -49,10 +48,9 @@ jobs:
           settings.json.example
     - name: Publish Linux
       run: |
-          cd ../../../..
+          rm AgileBot.exe
           dotnet publish -c Release -r linux-x64 -p:PublishSingleFile=true
-          cp settings.json.example bin/Release/netcoreapp3.1/linux-x64/settings.json.example
-          cd bin/Release/netcoreapp3.1/linux-x64
+          mv bin/Release/netcoreapp3.1/linux-x64/AgileBot.exe ./AgileBot.exe
     - name: Upload Linux
       uses: actions/upload-artifact@v2
       with:
