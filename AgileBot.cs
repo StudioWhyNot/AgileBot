@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -34,7 +35,13 @@ namespace AgileBot
         public static async Task Main(string[] args)
         {
             //Load and parse settings .json file.
-            var settingsPath = Path.Combine(AppContext.BaseDirectory, c_settingsFileName);
+            var baseDir = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+            if(string.IsNullOrEmpty(baseDir))
+            {
+                Console.Error.WriteLine($"Could not find base directory of the executable.");
+                return;
+            }
+            var settingsPath = Path.Combine(baseDir, c_settingsFileName);
             if(!File.Exists(settingsPath))
             {
                 Console.Error.WriteLine($"Could not find {c_settingsFileName} file next to executable.");
