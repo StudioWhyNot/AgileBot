@@ -1,5 +1,6 @@
 # Agile Bot
 Agile bot is a free and open source integration between Atlassian Jira and Discord. Support for other Agile and Kanban platforms may appear in the future, but for now it is only Jira.
+
 **⚠️This app is currently in a *very* early state, use it at your own risk!⚠️**
 ## Usage Examples
 Simply run a command with the key for a project or issue in order to have the bot embed it.
