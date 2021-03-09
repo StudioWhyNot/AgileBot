@@ -25,14 +25,14 @@ jobs:
     - name: Publish Windows
       run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true
     - name: Publish Windows
-      uses: actions/release@v1
+      uses: studiowhynot/agilebot/release@v1
       with:
         os: win-x64
     - name: Publish OSX
-      uses: actions/release@v1
+      uses: studiowhynot/agilebot/release@v1
       with:
         os: osx-x64
     - name: Publish Linux
-      uses: actions/release@v1
+      uses: studiowhynot/agilebot/release@v1
       with:
         os: linux-x64
