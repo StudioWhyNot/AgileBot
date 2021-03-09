@@ -24,7 +24,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Publish Windows
       run: |
-          rm AgileBot.exe
+          rm AgileBot.exe 2> /dev/null || true
           dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true
           mv bin/Release/netcoreapp3.1/win-x64/AgileBot.exe ./AgileBot.exe
     - name: Upload Windows
@@ -36,7 +36,7 @@ jobs:
           settings.json.example
     - name: Publish OSX
       run: |
-          rm AgileBot.exe
+          rm AgileBot.exe 2> /dev/null || true
           dotnet publish -c Release -r osx-x64 -p:PublishSingleFile=true
           mv bin/Release/netcoreapp3.1/osx-x64/AgileBot.exe ./AgileBot.exe
     - name: Upload OSX
@@ -48,7 +48,7 @@ jobs:
           settings.json.example
     - name: Publish Linux
       run: |
-          rm AgileBot.exe
+          rm AgileBot.exe 2> /dev/null || true
           dotnet publish -c Release -r linux-x64 -p:PublishSingleFile=true
           mv bin/Release/netcoreapp3.1/linux-x64/AgileBot.exe ./AgileBot.exe
     - name: Upload Linux
