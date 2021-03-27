@@ -1,0 +1,32 @@
+{
+    "discord":
+    {
+        "bot_token": "%BOT_TOKEN%",
+        "command_prefix": "!",
+        "arg_seperator_char": " ",
+        "case_sensitive_commands": false,
+        "log_not_found": false,
+        "user_map":
+        {
+            "bob": "Bob Barker",
+            "twi": "Twilight Sparkle",
+            "steve": "Minecraft Steve"
+        },
+        "status_map":
+        {
+            "todo": "To Do",
+            "inprogress": "In Progress",
+            "inreview": "In Review",
+            "review": "In Review",
+            "bug": "Open Bug"
+        }
+    },
+    "atlassian":
+    {
+        "jira_url": "%JIRA_URL%",
+        "consumer_key": "%CONSUMER_KEY%",
+        "consumer_secret": "%CONSUMER_SECRET%",
+        "oauth_token": "%OAUTH_TOKEN%",
+        "oauth_secret": "%OAUTH_SECRET%"
+    }
+}

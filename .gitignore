@@ -3,5 +3,4 @@
 /bin
 /obj
 *.user
-.secrets
-settings.json
+.env

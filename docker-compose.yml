@@ -5,4 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    restart: always
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - JIRA_URL=${JIRA_URL}
+      - CONSUMER_KEY=${CONSUMER_KEY}
+      - CONSUMER_SECRET=${CONSUMER_SECRET}
+      - OAUTH_TOKEN=${OAUTH_TOKEN}
+      - OAUTH_SECRET=${OAUTH_SECRET}
+    restart: unless-stopped
