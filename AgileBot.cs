@@ -48,8 +48,9 @@ namespace AgileBot
                 return;
             }
             var settingsJson = File.ReadAllText(settingsPath);
+            settingsJson = Environment.ExpandEnvironmentVariables(settingsJson);
             var settings = JsonSerializer.Deserialize<Settings>(settingsJson);
-            
+
             List<Task> startupTasks = new List<Task>();
             startupTasks.Add(ConnectDiscord(settings.Discord));
 
@@ -60,6 +61,9 @@ namespace AgileBot
                 await task;
             }
             startupTasks.Clear();
+
+            //Signal: live
+            Console.WriteLine("AgileBot running...");
             
             await Task.Delay(-1);
         }

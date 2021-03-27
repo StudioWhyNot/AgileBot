@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  agile-bot:
+    container_name: agile-bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - JIRA_URL=${JIRA_URL}
+      - CONSUMER_KEY=${CONSUMER_KEY}
+      - CONSUMER_SECRET=${CONSUMER_SECRET}
+      - OAUTH_TOKEN=${OAUTH_TOKEN}
+      - OAUTH_SECRET=${OAUTH_SECRET}
+    restart: unless-stopped

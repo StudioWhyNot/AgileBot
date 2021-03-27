@@ -45,3 +45,31 @@ Now you need to use the [Jira OAuth CLI](https://bitbucket.org/farmas/atlassian.
 **DO NOT SHARE ANY OF THESE TOKENS!**
 
 Now just run the bot and, if all goes well, you should see it appear as active in your Discord server. Happy sprinting!
+
+## Running the bot in a docker container
+
+For convenience, create a `.env` file and set it up with all the tokens from before. Like so:
+```
+BOT_TOKEN=<ex: Discord Bot token>
+JIRA_URL=<ex: https://myjirainstance.atlassian.net/>
+CONSUMER_KEY=<ex: Jira_Bot>
+CONSUMER_SECRET=<ex: Massive string>
+OAUTH_TOKEN=<ex: Token string>
+OAUTH_SECRET=<ex: Secret string>
+```
+Then modify `settings.json` to your needs (notice the environment variables names being used correspond with the ones in `.env`), you can use docker compose to bring up the container.
+```bash
+docker-compose up -d --build
+```
+You could also build the image.
+```bash
+docker build . -t agile-bot
+```
+And then run it.
+```bash
+docker run -d \
+--name=agile-bot \
+--restart unless-stopped \
+--env-file ./.env \
+agile-bot
+```
