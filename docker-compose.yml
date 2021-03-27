@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  agile-bot:
+    container_name: agile-bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
