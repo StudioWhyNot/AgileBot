@@ -48,11 +48,7 @@ Now just run the bot and, if all goes well, you should see it appear as active i
 
 ## Running the bot in a docker container
 
-After setting up your custom `settings.json` as explained above, you can use docker compose to bring up the container.
-```bash
-docker-compose up -d --build
-```
-For convenience, you can create a `.secrets` file (which will take precedence over corresponding variables in `settings.json`) and set it up with all the tokens from before. Like so:
+For convenience, create a `.env` file and set it up with all the tokens from before. Like so:
 ```
 BOT_TOKEN=<ex: Discord Bot token>
 JIRA_URL=<ex: https://myjirainstance.atlassian.net/>
@@ -61,4 +57,19 @@ CONSUMER_SECRET=<ex: Massive string>
 OAUTH_TOKEN=<ex: Token string>
 OAUTH_SECRET=<ex: Secret string>
 ```
-**DISCLAIMER: If you decide to build and push the image to a public container registry, take care not to package `settings.json` and/or `.secrets`**
+Then modify `settings.json` to your needs (notice the environment variables names being used correspond with the ones in `.env`), you can use docker compose to bring up the container.
+```bash
+docker-compose up -d --build
+```
+You could also build the image.
+```bash
+docker build . -t agile-bot
+```
+And then run it.
+```bash
+docker run -d \
+--name=agile-bot \
+--restart unless-stopped \
+--env-file ./.env \
+agile-bot
+```
