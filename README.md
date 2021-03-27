@@ -45,3 +45,20 @@ Now you need to use the [Jira OAuth CLI](https://bitbucket.org/farmas/atlassian.
 **DO NOT SHARE ANY OF THESE TOKENS!**
 
 Now just run the bot and, if all goes well, you should see it appear as active in your Discord server. Happy sprinting!
+
+## Running the bot in a docker container
+
+After setting up your custom `settings.json` as explained above, you can use docker compose to bring up the container.
+```bash
+docker-compose up -d --build
+```
+For convenience, you can create a `.secrets` file (which will take precedence over corresponding variables in `settings.json`) and set it up with all the tokens from before. Like so:
+```
+BOT_TOKEN=<ex: Discord Bot token>
+JIRA_URL=<ex: https://myjirainstance.atlassian.net/>
+CONSUMER_KEY=<ex: Jira_Bot>
+CONSUMER_SECRET=<ex: Massive string>
+OAUTH_TOKEN=<ex: Token string>
+OAUTH_SECRET=<ex: Secret string>
+```
+**DISCLAIMER: If you decide to build and push the image to a public container registry, take care not to package `settings.json` and/or `.secrets`**
