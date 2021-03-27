@@ -49,7 +49,19 @@ namespace AgileBot
             }
             var settingsJson = File.ReadAllText(settingsPath);
             var settings = JsonSerializer.Deserialize<Settings>(settingsJson);
-            
+
+            //Load environment variables from .secrets if theres is any
+            var dotenvPath = Path.Combine(baseDir, ".secrets");
+            DotEnv.Load(dotenvPath);
+
+            //Update settings environment variables only if not null
+            if (Environment.GetEnvironmentVariable("BOT_TOKEN") != null) { settings.Discord.BotToken = Environment.GetEnvironmentVariable("BOT_TOKEN"); }
+            if (Environment.GetEnvironmentVariable("JIRA_URL") != null) { settings.Atlassian.JiraURL = Environment.GetEnvironmentVariable("JIRA_URL"); };
+            if (Environment.GetEnvironmentVariable("CONSUMER_KEY") != null) { settings.Atlassian.ConsumerKey = Environment.GetEnvironmentVariable("CONSUMER_KEY"); };
+            if (Environment.GetEnvironmentVariable("CONSUMER_SECRET") != null) { settings.Atlassian.ConsumerSecret = Environment.GetEnvironmentVariable("CONSUMER_SECRET"); };
+            if (Environment.GetEnvironmentVariable("OAUTH_TOKEN") != null) { settings.Atlassian.OAuthAccessToken = Environment.GetEnvironmentVariable("OAUTH_TOKEN"); };
+            if (Environment.GetEnvironmentVariable("OAUTH_SECRET") != null) { settings.Atlassian.OAuthAccessSecret = Environment.GetEnvironmentVariable("OAUTH_SECRET"); };
+
             List<Task> startupTasks = new List<Task>();
             startupTasks.Add(ConnectDiscord(settings.Discord));
 
@@ -60,6 +72,9 @@ namespace AgileBot
                 await task;
             }
             startupTasks.Clear();
+
+            //Signal: live
+            Console.WriteLine("AgileBot running...");
             
             await Task.Delay(-1);
         }
