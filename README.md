@@ -3,14 +3,17 @@ Agile bot is a free and open source integration between Atlassian Jira and Disco
 
 **⚠️This app is currently in a *very* early state, use it at your own risk!⚠️**
 ## Usage Examples
-Simply run a command with the key for a project or issue in order to have the bot embed it.
-<br><img src="https://bit.ly/2N4c4D4" alt="embedding project" width="500"/>
+Simply run a command with the key for a project or issue in order to have the bot embed it.!
 
-Multiple commands in a single line are supported.
-<br><img src="https://bit.ly/3qvB9Ek" alt="embedding issues" width="300"/>
+<br><img src="https://user-images.githubusercontent.com/8867456/149078972-9eb41d83-8d21-4010-ba05-bb2de1be7751.png" alt="embedding project" width="500"/>
+
+Multiple commands in a single line are supported.!
+
+<br><img src="https://user-images.githubusercontent.com/8867456/149079016-80d34611-acff-4fc9-970c-d6493c645e15.png" alt="embedding issues" width="300"/>
 
 As are groups of tasks.
-<br><img src="https://bit.ly/3cdhvId" alt="embedding issues" width="340"/>
+
+<br><img src="https://user-images.githubusercontent.com/8867456/149079050-9d3f92ab-2782-49ac-b710-ba123e79be26.png" alt="embedding issues" width="340"/>
 
 Custom JQL and other advanced Queries are also available. For now, you can see them in Commands.cs.
 ## Running the bot
