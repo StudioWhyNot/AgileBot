@@ -15,7 +15,42 @@ As are groups of tasks.
 
 <br><img src="https://user-images.githubusercontent.com/8867456/149079050-9d3f92ab-2782-49ac-b710-ba123e79be26.png" alt="embedding issues" width="340"/>
 
-Custom JQL and other advanced Queries are also available. For now, you can see them in Commands.cs.
+Custom JQL and other advanced Queries are also available. For examples, see **Property Overrides** below.
+
+## Property Overrides
+Each property of TaskParams in Commands.cs can be overridden using the [syntax](https://discordnet.dev/guides/text_commands/namedarguments.html) defined by Discord.NET. The names of properties are _not_ case-sensitive. Arguments with spaces can be surrounded by quotes.
+
+The fields are as follows:
+> **Max**: The maximum number of tasks to display. Defaults to 10.
+> 
+> **User**: Search for tasks with this user as an assignee. Discord names will be mapped to Jira names as specified in the `settings.json`. Defaults to the querying user.
+> 
+> **Project**: The project to search. No default.
+> 
+> **Type**: The type of Jira story to search. Default changes depending on whether `!tasks` or `!bugs` was called.
+> 
+> **Status**: The status of the tasks to search for. Defaults to "In Progress" as specified in the `settings.json` if `!tasks` was called or "Bug" if `!bugs` was called.
+> 
+> **OrderBy**: How the tasks should be ordered in the Discord embed. Defaults to "priority".
+> 
+> **Order**: How the ordering should be displayed in the Discord embed. Defaults to "desc" (Descending).
+> 
+> **PreJql**: A JQL statement that is prepended to the other fields with an "AND" statment. Can be used to combine JQL and the other fields. No default.
+> 
+> **Jql**: A raw JQL statment that will cause any other fields to be ignored. No default.
+
+An example of Property Overrides:
+
+`!tasks project:PWS status: "In Progress" User: Scion`
+
+An example of a PreJql query:
+
+`!tasks PWS Done OrderBy: created PreJql: "createdDate <=  '2021/06/30' AND createdDate >=  '2021/06/29'"`
+
+An example of a Jql query:
+
+`!tasks jql: "status = Done AND assignee = scion AND createdDate <=  '2021/06/30' AND createdDate >=  '2021/06/29' ORDER BY priority DESC"`
+
 ## Running the bot
 Simply download and build the project for your desired hosting platform and run the application next to a `settings.json` file. `settings.json.example` provides an example.
 
